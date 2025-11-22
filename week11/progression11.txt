@@ -1,0 +1,8 @@
+ทำ spike ตามที่อาจารย์โอฬารแนะนำ เรื่องการจัดการ timezone ซึ่งจะได้ใช้จริงใน sprint ที่ 2
+
+อย่างแรกเป็นการเรียก method ใน js ที่สามารถเอา timezone ของเครื่องตอนนี้ออกมาได้
+
+function แรก(convertToLocalTimezone()) สามารถ return ค่าที่จัด format ออกมาได้ปกติแต่ยังมีปัญหาถ้าเราเปลี่ยน timezone ใน sensor tool 
+function นี้จะ return ค่าที่ timezone บนเครื่องเสมอ ไม่ได้สน sensor ซึ่งผิด requirement ของอาจารย์
+
+ส่วน function ที่ 2 สามารถปรับ timezone ใน sensor แล้วกดรีเว็บมันจะ return ได้ตาม timezone ที่ sensor กำหนด
