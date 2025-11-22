@@ -1,0 +1,11 @@
+ผมทำโค้ด frontend ของ integrated project sprint 1 เลยเอามาใส่ใน self practice
+
+เร่ิมจากการทำ DOM
+โดยใน sprint นี้จะมีการเรียกใช้ dialog ซึ่งทุกๆ dialog จะไม่สารมารถ cancel ได้ผมเลยใช้ event:cancel และ preventDefault มัน
+
+เริ่มทำ async function ที่ fetch GET ข้อมูล plan มาเก็บไว้ใน response ซึ่งมันจะ fetch มาเป็น json object
+ผมเลยดัก error ก่อนว่า fetch จาก backend มาเรียบร้อยไหม ถ้าไม่ผ่าน (response.ok เป็น false) ก็จะ throw error ซึ่งมันจะหยุดการทำงานโค้ดที่เหลือทันที
+แต่ถ้า response.ok เป็น true ก็จะไม่เข้าเงื่อนไขและทำงานต่อ โดยผมจะเอา response ที่ fetch มา มาทำให้เป็น js object ก่อนเพื่อเอาข้อมูลข้างในมาใช้
+แล้วก็ไปเรียก function populateTable มันคือ function ที่เอา plans ที่ fetch มา เอาไป loop forEach โดย loop แต่ละรอบจะสร้าง element ใหม่(tr)
+แล้วก็สร้าง td แล้วใส่ class ใส่ text ให้มันตามข้อมูลที่ fetch มาเสร็จแล้วก็ append เข้าไปใน td และสุดท้าย append เข้าไปใน table 
+ก็จะสามารถแสดงเป็น element บนเว็บได้

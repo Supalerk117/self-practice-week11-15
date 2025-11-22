@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ITB-eCoRS</title>
+  <link rel="icon" href="https://www.sit.kmutt.ac.th/wp-content/uploads/2023/07/cropped-SITLogo512-32x32.png"
+    sizes="32x32" />
+  <link rel="icon" href="https://www.sit.kmutt.ac.th/wp-content/uploads/2023/07/cropped-SITLogo512-192x192.png"
+    sizes="192x192" />
+  <link rel="apple-touch-icon"
+    href="https://www.sit.kmutt.ac.th/wp-content/uploads/2023/07/cropped-SITLogo512-180x180.png" />
+  <link rel="stylesheet" href="./src/assets/style.css" />
+</head>
+
+<body>
+  <nav>
+    <img src="./public/image/sit_logo.png" style="width: 300px" alt="SIT-LOGO" />
+    <h1>
+      ITB-eCoRS
+      <img src="./public/image/icon/school.png" style="width: 48px; color: white" alt="graduation-cap" />
+    </h1>
+
+    <a href="./reserve.html">
+      <button>Sign In
+        <img src="./public/image/icon/user.png" style="width: 16px" alt="sign-in" />
+      </button>
+    </a>
+  </nav>
+
+  <section>
+    <a href="./reserve.html">
+      <button class="ecors-button-manage">
+        Manage study plan declaration and course reservation
+      </button>
+    </a>
+
+    <div class="plan">
+      <h1 class="header">All Study Plan</h1>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Study Code</th>
+          <th>English Name</th>
+          <th>Thai Name</th>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <h1>Footer</h1>
+    <hr />
+    <p>© School of Information Technology, KMUTT</p>
+  </footer>
+
+  <dialog class="ecors-dialog" closedby="none">
+    <h1 class="ecors-dialog-message"></h1>
+    <div class="ecors-button"></div>
+  </dialog>
+
+  <script type="module" src="./src/js/app.js"></script>
+</body>
+
+</html>
