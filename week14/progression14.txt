@@ -1,0 +1,49 @@
+ใน sprint นี้ผมทำในส่วน showDialog เช่นการขึ้้นข้อความแสดงบนหน้าเว็บ มีปุ่มให้กด OK , keep declaration , cancel declaration 
+และการที่ไม่สามารถปิด dialog ได้จาก sprint ก่อนๆ ที่นี้ผมเลยคิดว่าการทำ function แยกเพื่อสำหรับแต่การทำงานแต่มันยังมีเค้าโครงเดิมที่คล้ายๆกัน มันคงจะไม่ flexible เท่าไหร่
+ผมเลยคิดว่าเราทำเป็น function เดียวแล้วรับ parameter มาเพื่อจะได้กำหนดความต้องการของแต่ละการทำงานนั้นๆ
+
+// reserve.html ใน project มีโค้ดประมาณนี้ 
+<dialog class="ecors-dialog" closedby="none">
+    <h1 class="ecors-dialog-message"></h1>
+    <div class="ecors-button"></div>
+</dialog>
+
+โดยมี 3 parameter
+1.message ที่ต้องการแสดง
+2.dismissible
+3.actions
+
+การทำงานของ function ผมก็จะเริ่มจากการเช็ค DOM ก่อนว่าเจอไหม ถ้าไม่เจอก็หยุดการทำงาน function เลยเพื่อป้องกันบัคที่จะเกิด
+ต่อมาถ้า parameter แรกไม่เป็นค่าว่างก็จะเอาค่านั้นมาใส่เป็น textContent เพื่อแสดงเป็นข้อความ dialog บนหน้าเว็บ
+และทำการ clear button ที่เป็น dialog ทั้งหมดไว้ก่อนเพ่ือป้องกันการทำงานซ้ำแล้ว button เก่าๆยังแสดงอยู่
+ต่อมาเช็ค actions ซึ่งจะเป็น array ถ้ามีอะไรใน array มันจะทำงาน loop forEach ใน array
+การทำงานใน loop ก็จะเป็นการสร้าง button element มาใหม่แล้ว custom มันคือการใส่ textContent ใส่ class ให้มันจาก parameter action 
+ซึ่งเป็น object ใน array และก็ append button นี้เข้าไปใน div ecors-button
+ต่อมาเช็คว่า parameter dismissible ว่าเป็น false ไหม โดย default จะเป็น true ถ้าเป็นก็จะ cancel dialog ไม่ได้แล้วก็ ทำให้ message เป็นสีแดง
+แต่ถ้า dismissible เป็น true ตัวอักษรจะเป็นสีฟ้าแลพ cancel dialog ได้ปกติและก็สร้างปุุ่ม okButton element ใส่ text ใส่ class แล้วเใื่อ click ก็ให้ปิด dialog
+แล้วก็ append เข้าไปใน ecors-button เหมือนเดิม แต่มันจะไม่มี case ที่มีทั้งปุ่ม okButton และ keep declare กับ cancel declare พร้อมกัน เพราะแยกคนละ condition
+พอแยกการทำงานของแต่ละอันเสร็จก็เรียก showModal() เพื่อเรียก dialog
+
+ตัวอย่างการใช้งานการเรียกใช้จะประมาณนี้
+
+showDialog(message, false, [
+        {
+            text: 'Cancel Declaration',
+            class:"ecors-button-cancel",
+            onClick: () => {
+                dialog.close();
+                deleteDeclaration(studentId);
+            }
+        },
+        {
+            text: 'Keep Declaration',
+            class:"ecors-button-keep",
+            onClick: () => dialog.close()
+        }
+    ]);
+
+showDialog('Authentication failed. Please try again.');
+
+showDialog("There is a problem. Please try again later.");
+
+showDialog("Declaration cancelled.", true);
