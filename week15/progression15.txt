@@ -1,0 +1,11 @@
+เป็น logic การ disabled ปุ่ม declare plan กับ change declare plan ของ sprint ที่ 2-3
+การทำงานคร่าวๆก็คือ addEventListener ให้ ปุ่ม dropdown , event:change คือทุกๆตรั้งที่มีการเปลี่ยน value ใน tag select จะทำงานการทำงานต่อไปนี้
+
+ถ้ามี currentDeclaredPlanId (ตัวแปรที่เก็บ state การทำงานของ change declare plan ถ้าเคย declare ไปแล้วมันจะเก็บ planId ที่ declare ไว้ 
+แต่ถ้ายังไม่ได้ declare ก็จะเป็นค่า null) ในกรณีถ้าตัวแปรนี้ไม่เป็นค่า null ก็จะเช็คต่อว่ามี value ใน dropdown ไหมถ้าไม่มี ( user กำลังเลือก "-- Select Major --"
+ซึ่งเราไม่ต้องการให้ user declare ค่านี้เพราะไม่ตรงตาม requiement และป้องกันการส่งข้อมูลให้ backend แบบไม่จำเป็น) หรือถ้า user กำลังเลือก plan เดิมที่เคยดี declare ไป
+ก็จะ disabled ปุ่ม chnage btn ให้กด ไม่ได้
+แต่ถ้าไม่เข้าเงื่อนไขที่ว่าก็ให้ user กดได้ปกติ (disabled = false)
+
+ในกรณีที่ไม่มี currentDeclaredPlanId หมายความว่ายังไม่เคย declare ก็จะเช็คคล้ายๆเดิมแต่เช็คแค่เลือก value เปล่าๆอยู่รึป่าว ถ้าเลือกก็ disabled ปุ่ม declare
+แต่ถ้าไม่ได้เลือกก็กดได้ปกติ (disabled = false)

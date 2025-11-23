@@ -1,0 +1,8 @@
+ในช่วงสัปดาห์ที่ 11–15 ผมได้ทำ self-practice ตามงานใน integrated project โดยเริ่มจากการทำ spike เรื่อง timezone เพื่อหาวิธีจัดการเวลาให้รองรับ sensor tool 
+ซึ่งผมได้ทดลองเขียนฟังก์ชันแปลงเวลาแบบต่าง ๆ และพบข้อจำกัดของการอ่าน timezone จากเครื่อง ก่อนแก้ด้วยวิธีที่สอดคล้องกับ requirement ของอาจารย์ ต่อมาในสัปดาห์ที่ 12 
+ผมเริ่มทำส่วน frontend ของ sprint 1 โดยทำ DOM, จัดการ dialog ที่ยกเลิกไม่ได้ และเขียน async function สำหรับ fetch ข้อมูล plan จาก backend ตรวจจับ error 
+และนำข้อมูลมาสร้าง element ในตารางแบบ dynamic ในสัปดาห์ที่ 13 ผมพัฒนาโค้ดสำหรับ Keycloak โดยติดตั้ง keycloak-js และเขียนฟังก์ชัน initialize / sign-in / sign-out 
+เพื่อดึงข้อมูลผู้ใช้จาก Keycloak แล้วนำไปใช้ใน module อื่น พร้อมจัดการ redirect และ clear ข้อมูลอย่างถูกต้อง สัปดาห์ที่ 14 ผมพัฒนา showDialog แบบปรับแต่งได้ผ่าน 
+parameter (message, dismissible, actions) เพื่อรองรับ dialog หลายรูปแบบในฟังก์ชันเดียว ทั้งการสร้างปุ่มแบบ dynamic การป้องกันการปิด dialog และการกำหนดสีของข้อความ 
+สุดท้ายในสัปดาห์ที่ 15 ผมทำ logic การ disabled ปุ่ม declare และ change plan ให้ตรงตาม requirement โดยเช็ค state ของ currentDeclaredPlanId และค่าใน dropdown 
+เพื่อป้องกันการส่งข้อมูลผิดหรือไม่จำเป็น ทำให้ปุ่มทำงานถูกต้องตามสถานะของผู้ใช้ในแต่ละกรณี
