@@ -1,0 +1,21 @@
+ทำ sprint ที่ 2 เรื่อง keycloak
+ก่อนอื่นก็ต้อง npm i keycloak-js เพื่อติดตั้ง nodemodules ก่อน
+ซึ่งโค้ดนี้จะทำเป็น function ที่เป็นการ sign in กับ sign out เหมือนเป็น library แล้ว export ออกไปเพื่อเรียกใช้ใน module หลักของ page
+อย่างแรก set up keycloak เพื่อชี้ไปหา server ของอาจารย์
+โดยผมจะสร้าง user ที่เก็บ object พวก id , name เอาไว้ก่อนจะได้เรียกใช้ง่ายๆ โดยเริ่มต้นเป็น null
+
+function แรกเป็นการ sign in โดยทุกครั้งที่มีการเรียก method ของ keycloak นี้ keycloak.init({ onLoad: "login-required" }); จะทำการบังคับ
+ให้ browser redirect ไปที่หน้า sign in ของ keycloak ซึ่งถ้า sign in สำเร็จก็จะ return ของมูลใน user นั้นๆออกมา
+ผมเลยเขียน condition เช็คว่าถ้า sign in สำเร็จ (มีข้อมูล user เก็บไว้ในตัวแปร authenticated) ก็ log ว่า authen สำเร็จ แต่ถ้าไม่สำเร็จ ก็ log ว่าไม่สำเร็จ
+ทำไปเพื่อให้รู้ว่า state ตอนนี้เป็นยังไง แล้วผมก็จะ log พวก studentId , name ที่ keycloak ส่งมาให้ด้วยเพื่อให้รู้ว่าตอนนี้อยู่รหัสนศ.อะไร
+ที่นี้ผมก็จะเอา user ที่ประกาสไว้ตอนแรกมา reassign ค่าใหม่เป็นตัว id , name ที่ได้มาจาก keycloak (ตัวที่พึ่ง log ไป) แล้วก็ return user ออกไปใช้ใน module ออกไปเพื่อเรียกใช้ใน
+
+การเรียกใช้ใน module อื่นก็จะประมาณนี้
+async funciton useKeycloak(){
+    const keycloakData = await initializeKeycloak()
+    const fullnameEl = document.querySelector('.ecors-fullname')
+    fullnameEl.textContent = keycloakData.name
+}
+
+่ต่อมา function sign out ก็แค่ใช้ method ของ keycloak ในการ logout และ redirect ไปที่หน้า home แล้วก็จะ clear storage ด้วยเพื่อกันข้อมูลค้าง
+และก็ reassign ข้อมูลใน user ให้ value ข้างใน key เป็น null เพื่อ clear ข้อมูล
